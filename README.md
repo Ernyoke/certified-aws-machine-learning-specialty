@@ -5,3 +5,4 @@
 1. Data Engineering
     - [S3](01-data-engineering/s3.md)
     - [Kinesis](01-data-engineering/kinesis.md)
+    - [AWS Glue](01-data-engineering/glue.md)

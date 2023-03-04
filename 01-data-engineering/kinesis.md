@@ -76,7 +76,7 @@
 ## Kinesis Data Analytics
 
 - Input streams for Kinesis Data Analytics can be either a Kinesis Data Stream or Firehose
-- With Kinesis Data Analytics we can analyze incoming data using SQL or Flink
+- With Kinesis Data Analytics we can analyze incoming data using SQL or Apache Flink
 - Use-cases for Data Analytics:
     - Streaming ETL: select columns, make simple transformations on streaming data
     - Continuos metric generation: for example live leader boards
@@ -85,12 +85,41 @@
     - We only pay for resources consumed
     - It is serverless, scales automatically
     - It is using IAM permissions to access streaming sources and destinations
-    - We can use SQL or Flink for the analytics script
+    - We can use SQL or Apache Flink for the analytics script
     - It offers schema discovery
     - A Lambda function can be used for preprocessing the data
 
-## Machine Learning or Kinesis Data Analytics
+## Machine Learning with Kinesis Data Analytics
 
 - We can use 2 machine learning algorithms with Kinesis Data Analytics SQL scripts:
     - `RANDOM_CUT_FOREST`: can be used for anomaly detection on numeric columns. It is using recent history to compute the model
     - `HOTSPOT`: locate and return information about relatively dense regions in a dataset
+
+## Kinesis Video Streams
+
+- Video Streams is used for handling video input from different sources such as:
+    - Security cameras
+    - AWS DeepLens
+    - Smartphone camera
+    - Audio feeds
+    - RADAR data
+    - RTSP camera
+    - etc.
+- Offers video playback capability
+- Consumers can be:
+    - Custom code (Tensorflow, MXNet, etc.)
+    - AWS SageMaker
+    - Amazon Rekognition
+- We can keep the video data for an interval between 1 hour up to 10 years
+- Use-cases:
+    - Decode video frames and do ML-based inference with SageMaker
+    - Detect people in video streams
+    - etc.
+
+# Kinesis Summary
+
+- Kinesis Data Streams: real-time streams for ML applications
+- Kinesis Data Firehose: ingest massive data in near-real time
+- Kinesis Data Analytics: real-time ETL/ML algorithms on streams
+- Kinesis Video Streams: real-time video streams to create ML applications
+
