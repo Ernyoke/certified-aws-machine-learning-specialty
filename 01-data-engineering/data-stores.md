@@ -1,0 +1,21 @@
+# AWS Data Stores for Machine Learning
+
+- Redshift:
+    - Used for Data Warehousing, SQL analytics
+    - OLAP (Online analytical processing) datastore
+    - We can load data form S3 into S3 or we can use Redshift Spectrum to query data directly from S3
+- RDS, Aurora:
+    - These are relation, OLTP (Online Transaction Processing) datastores
+    - We have to provision servers in advance (excluding Aurora serverless)
+- DynamoDB:
+    - It is a serverless NoSQL datastore
+    - It can be used in provisioned mode (we have to provision read/write capacity) or in on-demand mode
+    - It is useful to store machine learning models served by other applications
+- S3:
+    - Used for object storage
+    - It is serverless, it provides "infinite" storage
+    - Integrates with most AWS services
+- OpenSearch (prev. ElasticSearch):
+    - Used for indexing and searching data
+- ElastiCache:
+    - Used for fast caching in RAM memory
