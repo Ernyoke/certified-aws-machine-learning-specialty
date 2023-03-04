@@ -72,4 +72,25 @@
     - Near real time (lowest buffering time is 1 minute)
     - Scales automatically
     - No data storage, data is discarded after buffering time ellipses
-    
+
+## Kinesis Data Analytics
+
+- Input streams for Kinesis Data Analytics can be either a Kinesis Data Stream or Firehose
+- With Kinesis Data Analytics we can analyze incoming data using SQL or Flink
+- Use-cases for Data Analytics:
+    - Streaming ETL: select columns, make simple transformations on streaming data
+    - Continuos metric generation: for example live leader boards
+    - Responsive analytics: look for certain criteria and build alerts (filtering)
+- Features:
+    - We only pay for resources consumed
+    - It is serverless, scales automatically
+    - It is using IAM permissions to access streaming sources and destinations
+    - We can use SQL or Flink for the analytics script
+    - It offers schema discovery
+    - A Lambda function can be used for preprocessing the data
+
+## Machine Learning or Kinesis Data Analytics
+
+- We can use 2 machine learning algorithms with Kinesis Data Analytics SQL scripts:
+    - `RANDOM_CUT_FOREST`: can be used for anomaly detection on numeric columns. It is using recent history to compute the model
+    - `HOTSPOT`: locate and return information about relatively dense regions in a dataset
