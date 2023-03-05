@@ -12,3 +12,5 @@
     - [DMS - Database Migration Service](01-data-engineering/dms.md)
     - [AWS Step Functions](01-data-engineering/step-functions.md)
     - [Other Services](01-data-engineering/other-services.md)
+2. Exploratory Data Analysis
+    - [Python in Data Science and ML](02-exploratory-data-analysis/python-in-data-science-and-lm.md)
