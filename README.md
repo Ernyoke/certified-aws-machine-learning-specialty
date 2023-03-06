@@ -15,4 +15,5 @@
 2. Exploratory Data Analysis
     - [Python in Data Science and ML](02-exploratory-data-analysis/python-in-data-science-and-lm.md)
     - [Data Science Basics](02-exploratory-data-analysis/data-science-basics.md)
-    - [Athena](02-exploratory-data-analysis/athena.md)
+    - [Amazon Athena](02-exploratory-data-analysis/athena.md)
+    - [Amazon QuickSight](02-exploratory-data-analysis/quicksight.md)
