@@ -74,3 +74,13 @@
 - Users are defined via IAM or email signup
 - SAML-based single sign-on
 - Active Directory integration for enterprise edition only
+
+## QuickSight Visual Types
+
+- AutoGraph
+- Bar Charts: for comparison and distribution
+- Line Charts: for changes over time
+- Scatter plots, heat maps: for correlations
+- Pie graphs, tree maps: for aggregation
+- Pivot tables: for tabular data
+- Other: KPI, Geospatial charts, Donut charts, Gauge charts, etc.
