@@ -17,3 +17,5 @@
     - [Data Science Basics](02-exploratory-data-analysis/data-science-basics.md)
     - [Amazon Athena](02-exploratory-data-analysis/athena.md)
     - [Amazon QuickSight](02-exploratory-data-analysis/quicksight.md)
+    - [EMR - Elastic MapReduce](02-exploratory-data-analysis/emr.md)
+    - [Feature Engineering](02-exploratory-data-analysis/feature-engineering.md)
