@@ -62,3 +62,33 @@
 
 - When making predictions about classifications, we have some sort of threshold of probability at which point we flag something as the positive
 - If we have to many false positives, one way to fix that is to simply increase that threshold
+
+## Binning
+
+- Used to bucket observations together based on ranges of values
+- Quantile binning: categorizes data by their place in the data distribution. Ensures even sizes for the bins
+- Binning is used to transform numeric data to ordinal data
+- Useful when there is uncertainty in the measurements
+
+## Transforming
+
+- Applying some functions to a feature to make it better suited for training
+- Feature data with exponential trend may benefit from a logarithmic transform
+
+## Encoding
+
+- Transforming data into some new representation required by the model
+- One-hot encoding:
+    - Creates buckets for every category
+    - The bucket for the current category has a 1, all others have 0 value
+    - Vert common in deep learning, where categories are represented by individual output neurons
+
+## Scaling / Normalization
+
+- Some models prefer feature data to be normally distributed around 0 (most neural nets)
+- Most models require feature data to be scaled to comparable values, otherwise features with larger magnitudes will have more weight than they should
+
+## Shuffling
+
+- Many algorithms benefit rom shuffling the training data
+- Otherwise they may learn from residual signals in the training data resulting from the order in which they were collected
