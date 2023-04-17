@@ -19,3 +19,5 @@
     - [Amazon QuickSight](02-exploratory-data-analysis/quicksight.md)
     - [EMR - Elastic MapReduce](02-exploratory-data-analysis/emr.md)
     - [Feature Engineering](02-exploratory-data-analysis/feature-engineering.md)
+3. Modelling:
+    - [Deep Learning](03-modelling/deep-learning.md)

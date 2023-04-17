@@ -1,0 +1,66 @@
+# Deep Learning
+
+- Deep Learning frameworks:
+    - Tensorflow / Keras
+    - Apache MXNet
+
+- Types of neural networks:
+    - Feedforward Neural Network
+    - Convolutional Neural Network (CNN):
+        - Mainly used for 2D data, example image classification
+    - Recurrent Neural Network (RNN):
+        - Manly used for sequences in time or for things which have an order for them, example stock prediction, understand words of sentences, translation
+        - Flavors of RNN: LSTM, GRU
+
+## Activation Functions
+
+- It is a function inside of a given neuron, that sums up the all the inputs and decides what output should be sent to the next layer of neurons
+- Types of activation functions:
+    - Linear: 
+        - It doesn't really "do" anything, it outputs the input data
+        - Can't do backpropagation
+        - There is no point in having more than one layer of liner activation functions
+    - Binary Step function:
+        - It's an ON/OFF function
+        - It can't handle multiple classification - it is a binary function
+        - Vertical slopes don't work well with calculus (derivate is infinite)
+    - Non-Linear activation functions:
+        - They can create complex mappings between input and outputs
+        - They allow backpropagation (they have useful derivatives)
+        - They allow to have multiple layers
+- Non-linear activation functions:
+    - Sigmoid or Logistic / TanH (hyperbolic tangent):
+        - They are nice and smooth
+        - Sigmoid will scale the input between 0 to 1, TanH will scale the input between -1 to 1. They change slowly for high or low values ("Vanishing Gradient")
+        - They are computationally expensive
+        - Tanh is generally preferred over sigmoid
+    - Rectified Linear Unit (ReLU):
+        - Very popular choice for activation function
+        - Very easy and fast to compute
+        - In case the input are zero or negative, we have a linear function and all of its problems ("Dying ReLU problem")
+    - Leaky ReLU:
+        - Solves the "Dying ReLU problem" by introducing a negative slope bellow 0
+    - Parametric ReLU (PReLU):
+        - ReLU, but the slope is the negative part is learned via backpropagation
+        - Complicated and computationally intensive
+    - Other ReLU variants:
+        - Exponential Linear Unit  (ELU)
+        - Swish
+            - From Google, performs really well
+            - Performs well mostly with very deep networks (40+ layers)
+        - Maxout
+            - Output the max of the inputs
+            - Technically ReLU is a special case of maxout
+            - Doubles the parameters that need to be trained, not often practical
+    - Softmax:
+        - Used on the final output layer of a multiple classification problem
+        - Basically converts outputs to probabilities of each classification
+        - Can't produce more than one label for something (sigmoid can)
+- Choosing an activation function:
+    - For multiple classification, we should use softmax on the output layer
+    - RNNs do well with Tanh
+    - For everything else
+        - Start with ReLU
+        - If we need to do better, we should try Leaky ReLU
+        - Last resort: PReLU, Maxout
+        - Swish for really deep networks
