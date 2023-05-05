@@ -64,3 +64,35 @@
         - If we need to do better, we should try Leaky ReLU
         - Last resort: PReLU, Maxout
         - Swish for really deep networks
+
+## Convolutional Neural Networks (CNN)
+
+- They are used mostly for image analysis
+- Recommended when we have data that doesn't neatly align into columns. Examples:
+    - Images that we want to find features within
+    - Machine translation
+    - Sentence classification
+    - Sentiment analysis
+- They can find features that aren't in a specific spot, examples:
+    - Stop sing in a picture
+    - Words within a sentences
+- They are "feature-location invariant"
+- How dod they work:
+    - Local receptive fields are groups of neurons that only respond to a part of what is seen (subsampling)
+    - They over overlap each other to cover the entire visual field  (convolution)
+    - They feed into higher layers that identify increasing complex images
+    - For color images we can used extra layers for red, green, and blue channels
+- Building a CNN with Keras:
+    - Source data must be of appropriate dimensions
+    - Conv2D layer types does the actual convolution on a 2D image
+    - MaxPooling2D layers can be used to reduce a 2D layer down by taking the maximum value in a given block
+    - Flatten layers will convert the 2D layer to a 1D layer for passing into a flat hidden layer of neurons
+    - Typical usage:
+        - Conv2D -> MaxPooling -> Dropout -> Flatten -> Dense -> Dropout -> Softmax
+- CNNs are very computationally intensive (CPU, GPU, adn RAM)
+- CNNs have a lot of hyperparameters to configure (kernel sizes, layers with different number of units, amount of pooling, etc.)
+- They are specialized architectures of CNNs:
+    - LeNet-5: handwriting recognition
+    - AlexNet: image classification
+    - GoogLeNet: deeper than AlexNet, introduces inception modules (groups of convolutional layers)
+    - ResNet (Residual Network): even deeper - maintains performance via skip connections
