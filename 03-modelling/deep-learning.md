@@ -96,3 +96,82 @@
     - AlexNet: image classification
     - GoogLeNet: deeper than AlexNet, introduces inception modules (groups of convolutional layers)
     - ResNet (Residual Network): even deeper - maintains performance via skip connections
+
+## Recurrent Neural Networks (RNNs)
+
+- They are used for:
+    - Time-series data:
+        - Predict future behavior based on past behavior
+        - Analyze web logs, sensor logs, stock trades
+        - Self-driving based on past trajectories
+    - Data that consists of sequences of arbitrary lengths:
+        - Machine translation
+        - Produce image captions
+        - Produce machine-generated music
+- RNN topologies:
+    - Sequence to sequence: predict stock prices based on series of historical data
+    - Sequence to vector: words in a sentence to sentiment
+    - Vector to sequence: create captions from an image
+    - Encodes -> Decoder: machine translation
+- Training RNNs:
+    - We need to backpropagate not only through the layers of the network but also through time
+    - All these time steps adds up fast. To avoid this we can limit the number of time steps (truncated backpropagation through time)
+    - The state from an earlier time step gets diluted over time. This can be a problem if the older behavior does not matter less than the newer (example: sentence of words). To counteract this effect we can do the following:
+        - LSTM Cell:
+            - Long Short-Term Memory Cell
+            - Maintains a separate short-term and long-term state
+        - GRU Cell:
+            - Gated Recurrent Unit
+            - Simplified LSTM Cell that performs similarly
+- Training an RNN is hard:
+    - They are very sensitive to topologies and choice of hyperparameters
+    - Training is very resource intensive
+    - A wrong choice can lead to RNN that doesn't converge at all
+
+## Modern Natural Language Processing
+
+- Transform deep learning architectures:
+    - Adopts mechanism of "self-attention":
+        - Weights significance of each part of the input data
+        - Processes sequential data but processes the entire input at once
+        - The attention mechanism provides context, so no need to process one word at a time
+    - Models: BERT, RoBERTa, T5, GPT-2/3/4, DistilBERT
+        - DistilBERT: uses knowledge distillation to reduce model size by 40%
+        - BERT: Bi-directional Encoder Representation from Transformers
+        - GPT: Generative Pre-Trained Transformer
+- Transfer Learning - take pre-trained models and use them for own purposes
+    - NLP models (and others) are too big and complex to build from scratch and re-train every time
+    - Model zoos such as Hugging Face offer pre-trained models to start from
+        - Hugging has an integration with Sagemaker via Hugging Face Deep Learning Containers
+    - We can fine-tune these models for our own use cases
+    - Transfer Learning approaches:
+        - Continue training a pre-trained model - fine-tuning: use a low learning rate to ensure we are just incrementally improving the model
+        - Add new trainable layers to the top of a frozen model: turn old features into predictions of new data
+        - Retrain from scratch - in case we have a large amount of data and compute capacity
+        - Use it as-is
+
+## Deep Learning on EC2/EMR
+
+- EMR supports Apache MXNet and GPU instance types
+- Appropriate instance types for deep learning:
+    - P3: 8 Tesla V100 GPUs
+    - P2: 16 K80 GPUs (less expensive)
+    - G3: 4 M60 GPUs (all Nvidia chips)
+    - G5g: AWS Graviton 2 processors / Nvidia T4G Tensor GPUs
+    - P4d: A100 "UltraClusters" for supercomputing
+- Deep Learning AMIs
+
+## Tuning Neural Networks
+
+- Neural networks are trained by gradient descent (or similar means)
+- We start at some random point and sample different solutions (weights) seeking to minimize some cost function over many epochs
+- Learning rate: how far apart the samples are
+- Effects of learning rate:
+    - If the learning rate is too high, we can overshoot the optimal solution
+    - If the learning rate is too small, it will take too long to find the optimal solution
+    - Learning rate is an example of hyperparameter
+- Batch size - how many training samples are used within each batch of each epoch
+- Somewhat counter-intuitively:
+    - Smaller batch sizes can work their way out of a "local minima" more easily
+    - Batch sizes that are too large can end up getting stuck in the wrong solution
+    - Random shuffling at each epoch can make this look like very inconsistent results from run to run
