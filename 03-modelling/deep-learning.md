@@ -220,3 +220,61 @@
     - It is a debugging technique
     - Numerically check the derivatives computed during training
     - It is useful for validating the code of a neural network training
+
+## Confusion Matrix
+
+- A confusion matrix can help understand the more nuanced results of a model
+- Binary confusion matrix:
+
+|               | Actual YES      | Actual NO       |
+|---------------|-----------------|-----------------|
+| Predicted YES | TRUE POSITIVES  | FALSE POSITIVES |
+| Predicted NO  | FALSE NEGATIVES | TRUE NEGATIVES  |
+
+- Measuring models:
+    - Recall: **TRUE POSITIVES / TRUE POSITIVES + FALSE NEGATIVES**
+        - AKA Sensitivity, True Positive rate, Completeness
+        - It is the percent of positive rightly predicted
+        - It is a good choice when we care about the false negatives, ex. fraud detection
+    - Precision: **TRUE POSITIVES / TRUE POSITIVES + FALSE POSITIVES**
+        - AKA Correct Positives
+        - It is the percent of relevant results
+        - It is a good choice when we care about false positives, ex. medical screening, drug testing
+    - Other metrics:
+        - Specificity: **TRUE NEGATIVES / TRUE NEGATIVES + FALSE POSITIVES** (True negative rate)
+        - F1 score: 
+            - **2 * TRUE POSITIVES / 2 * TRUE POSITIVES + FALSE POSITIVES + FALSE NEGATIVES**
+            - **2 * (Precision * Recall) / (Precision + Recall)**
+            - It is the harmonic mean of precision and sensitivity
+            - Good choice when we care about precision and recall
+        - RMSE - Root mean squared error
+            - It is used for accuracy measurement
+            - It only cares about right and wrong answers
+- ROC Curve - Receiver Operating Characteristic Curve
+    - It is a plot of true positive rate (recall) vs. false positive rate at various threshold settings
+
+    ![ROC Curve](images/roc-curve.png)
+
+    - Points above the diagonal represent good classification (better than random)
+    - The idea curve would be a point in the upper-left corner
+    - The more it's "bent" towards upper-left, the better
+    - AUC: the area under ROC curve - Area Under the Curve
+        - Equal to probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative instance
+        - ROC AUC of 0.5 is useless classifier, 1.0 is perfect
+        - Commonly used metric for comparing classifiers
+
+## Ensemble Learning
+
+- Common example: random forest
+    - Decision trees are prone to overfitting => make lots of decision trees and let them all vote on the result
+- Bagging:
+    - Generate N new training sets by random sampling with replacement
+    - Each resampled model can be trained in parallel
+- Boosting:
+    - Observations are weighted
+    - Training is sequential, each classifier takes into account the previous one's success
+- Bagging vs Boosting:
+    - XGBoost is the latest hotness
+    - Boosting generally yields better accuracy
+    - Bagging avoids overfitting
+    - Bagging is easier to parallelize
