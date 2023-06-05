@@ -175,3 +175,48 @@
     - Smaller batch sizes can work their way out of a "local minima" more easily
     - Batch sizes that are too large can end up getting stuck in the wrong solution
     - Random shuffling at each epoch can make this look like very inconsistent results from run to run
+
+## Regularization
+
+- It is a technique to prevent overfitting
+- Overfitting happens when:
+    - Models that are good at making prediction on the data they were trained on but non on new data 
+    - Overfitted models have learned patterns in the training data that don't generalize to the real world
+    - Often seen as high accuracy on training data set, but lower accuracy on test or evaluation data set
+- Regularization techniques are intended to prevent overfitting:
+    - Reduce the network size
+    - Dropout: randomly drop out neurons at each epoch of the training
+    - Early stopping: detect validation accuracy leveling and stop the training
+- L1 and L2 regularization:
+    - A regularization term is added as weights are learned
+    - L1 term is the sum of the weights
+    - L2 term is the sum of the square of the weights
+    - L1:
+        - Performs feature selection. Can cause entire features to go to 0
+        - It is computationally inefficient
+        - Produces sparse outputs
+    - L2:
+        - All features remain considered, just weighted
+        - It is computationally efficient
+        - Produces dense output
+- Why would we want to use L1?
+    - Feature selection can reduce dimensionality. The resulting sparsity can make up for its computational inefficiency
+    - If all features are important, L2 is probably a better choice
+
+## Gradient Problems
+
+- The vanishing gradient problem:
+    - When the slope of the learning curve approaches to zero, things can get stuck
+    - We end up working with very small numbers that can slow down training or even introduce numerical errors
+    - It can become a problem with deeper networks and RNNs as these vanishing gradients propagate to deeper layers
+    - It is the opposite to the "exploding gradients" problem
+- Fixing the vanishing gradient problem:
+    - Multi-level hierarchy: break up levels into their own sub-networks trained individually
+    - Long short-term memory (LSTM)
+    - Residual Network
+        - Example: ResNet
+    - Better choice of activation function (ReLU is a good choice usually)
+- Gradient Checking:
+    - It is a debugging technique
+    - Numerically check the derivatives computed during training
+    - It is useful for validating the code of a neural network training
