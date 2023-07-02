@@ -5,14 +5,14 @@
 - SageMaker Notebooks:
     - They are jupiter notebook instances running on EC2 machines
     - They have access to S3
-    - They have access to libraries such as Scikit_learn, Spark, Tensorflow
+    - They have access to libraries such as Scikit-Learn, Spark, Tensorflow
     - They have access to a wide variate of built-in modles
     - They have the ability to spin up training instances and deploy trained models
 - Data prep on SageMaker:
     - Data usually comes from S3, the format varies with algorithms, of is RecordIO/Protobuf
     - We can ingest data from Athena, EMR, Redshift, Amazon Keyspaces DB
     - Apache Spark integrates with SageMaker
-    - Scikit_learn, numpy, pandas all at our disposal within the notebook
+    - Scikit-Learn, numpy, pandas all at our disposal within the notebook
 - SageMaker processing:
     - Processing jobs:
         - Copy data from S3
@@ -43,3 +43,70 @@
         - Elastic Inference for accelerating deep learning models
         - Automatic scaling: increase the # of endpoints if needed
         - Shadow Testing: evaluates new models against currently deployed models to catch errors
+
+## Linear Learner
+
+- Linear regression:
+    - Fit a line to our training data
+    - Predictions based on that line
+- It can handle both regression (numeric) predictions and classification predictions:
+    - For classifications a linear threshold function is used
+    - Can do binary or multi-class classification
+- Input format:
+    - RecordIO-wrapped protobuf (Float32 data only!) - most performant
+    - CSV - first column is assumed to be the label
+    - File or Pipe mode both supported
+- Processing:
+    - Training data must be normalized (all features are weighted the same)
+    - Linear Learner can do the normalization automatically
+    - Input data should be shuffled
+- Training:
+    - Uses stochastic gradient descent (SGD)
+    - We can chose from optimization algorithms: Adam, AdaGrad, SGD, etc.
+    - Multiple models can be optimized in parallel
+    - We can tune L1, L2 regularization
+- Important hyperparameters:
+    - Balance_multiclass_weights: gives each class equal importance in loss functions
+    - Learning_rate, mini_batch_size
+    - L1 regularization
+    - Wd - Weight decay (L2 regularization)
+- Instance types:
+    - Training:
+        - Single or multi-machine CPU or GPU
+        - I does help to have more than one machine/it does not help to have more than one GPU per machine
+
+## XGBoost
+
+- eXtreme Gradient Boosting
+    - Boosted groups of decision trees
+    - New trees made to correct the errors of previous trees
+    - Uses gradient descent to minimize loss as new trees are added
+- Can be used for classifications and for regressions (regression trees)
+- Input format:
+    - Accepts CSV, libsvm, recordIO-protobuf, Parquet
+    - Models are serialized/deserialized with Pickle
+    - Can be used as a framework within notebooks
+        - Sagemaker.xgboost
+    - Or as a built-in SageMaker algorithm
+- Important hyperparameters:
+    - Subsample: prevent overfitting
+    - Eta: step size shrinkage, used to prevent overfitting
+    - Gamma: minimum loss reduction to create a partition; larger =  more conservative
+    - Alpha: L1 regularization; larger =  more conservative
+    - Lambda: L2 regularization; larger =  more conservative
+    - eval_metric:
+        - Optimize an AUC, error, rmse
+        - For example, if we care about false positives more than accuracy, we might use AUC here
+    - scale_pos_weight:
+        - Adjust balance of positive and negative weights
+        - Helpful for unbalanced classes
+        - Might set to sum(negative cases)/sum(positive cases)
+    - max_depth:
+        - Max depth of a tree
+        - Too high value can cause overfit
+- Instance types:
+    - Uses CPU's only for multiple instances, does not support GPU for that
+    - Is memory-bound, not compute-bound (M5 is a good choice)
+    - As of XGBoost 1.2, single-instance GPU training is available (P2, P3)
+        - We must set tree_method hyperparameter to gpu_hist
+        - It trains more quickly and can be more cost effective
