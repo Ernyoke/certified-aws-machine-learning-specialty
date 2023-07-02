@@ -21,3 +21,4 @@
     - [Feature Engineering](02-exploratory-data-analysis/feature-engineering.md)
 3. Modelling:
     - [Deep Learning](03-modelling/deep-learning.md)
+    - [Amazon SageMaker](03-modelling/sagemaker.md)

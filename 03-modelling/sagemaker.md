@@ -1,0 +1,45 @@
+# Amazon SageMaker
+
+- SageMaker is intended to manage the entire machine learning workflow
+- SageMaker allows us to: fetch, clean and prepare data -> train and evaluate model deploy models and evaluate results in production -> repeat
+- SageMaker Notebooks:
+    - They are jupiter notebook instances running on EC2 machines
+    - They have access to S3
+    - They have access to libraries such as Scikit_learn, Spark, Tensorflow
+    - They have access to a wide variate of built-in modles
+    - They have the ability to spin up training instances and deploy trained models
+- Data prep on SageMaker:
+    - Data usually comes from S3, the format varies with algorithms, of is RecordIO/Protobuf
+    - We can ingest data from Athena, EMR, Redshift, Amazon Keyspaces DB
+    - Apache Spark integrates with SageMaker
+    - Scikit_learn, numpy, pandas all at our disposal within the notebook
+- SageMaker processing:
+    - Processing jobs:
+        - Copy data from S3
+        - Spin up a processing container
+        - Output processed data to S3
+- SageMaker training:
+    - We crate a training job:
+        - We provide an URL to an S3 bucket with the training data
+        - We provide an URL to an S3 bucket for the output
+        - We provide a path to an ECR container with the training code
+        - SageMaker will spin up ML compute resources
+    - Training options:
+        - Builtin training algorithms
+        - Spark MLLib
+        - Custom Python Tensorflow/MXNet code
+        - PyTorch, Scikit-Learn, RLEstimator (reinforcement learning)
+        - XGBoost, Hugging Face, Chainer
+        - Our own Docker image
+        - Algorithm purchased from AWS marketplace
+- Deploying trained models:
+    - We can save trained data to S3
+    - We can deploy in two ways:
+        - Persistent endpoint for making individual predictions on demand
+        - SageMaker Batch Transform to get predictions for an entire dataset
+    - Other options:
+        - Inference Pipelines: used for more complex processing
+        - SageMaker Neo: deploy to edge devices
+        - Elastic Inference for accelerating deep learning models
+        - Automatic scaling: increase the # of endpoints if needed
+        - Shadow Testing: evaluates new models against currently deployed models to catch errors
