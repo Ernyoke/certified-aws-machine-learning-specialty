@@ -110,3 +110,34 @@
     - As of XGBoost 1.2, single-instance GPU training is available (P2, P3)
         - We must set tree_method hyperparameter to gpu_hist
         - It trains more quickly and can be more cost effective
+
+## Seq2Seq
+
+- Input is a sequence of tokens, output is a sequence of tokens
+- Used for:
+    - Machine translation
+    - Text summarization
+    - Speech to text
+- It is implemented with RNNs and CNNs with attention
+- Input format:
+    - Expects RecordIO-Protobuf format: tokens must be integers (this is unusual since most algorithms expect floating point data)
+    - We need to provide tokenized text files (we cannot provide a simple Word file, for example)
+    - We can convert data to Protobuf format using sample code provided
+    - We must provide: training data, validation data and vocabulary files
+- How it is used?
+    - Training for machine translation can take days
+    - Pre-trained models are available
+    - Public training datasets are available for specific translation tasks
+- Important Hyperparameters:
+    - Batch_size
+    - Optimizer_type: adam, sgd, rmsprop
+    - Learning_rate
+    - Num_layers_encoder
+    - Num_layers_decoder
+    - We can optimize for:
+        - Accuracy
+        - BLUE score: compare our translation against multiple reference translations
+        - Perplexity: cross-entropy metric
+- Instance Types:
+    - Can only use GPU instance types (P3 for example)
+    - Can only use a single machine for training - it can use multi-GPUs on one machine
