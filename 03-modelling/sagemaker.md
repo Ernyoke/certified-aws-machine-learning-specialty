@@ -141,3 +141,37 @@
 - Instance Types:
     - Can only use GPU instance types (P3 for example)
     - Can only use a single machine for training - it can use multi-GPUs on one machine
+
+## DeepAR
+
+- Used for forecasting one-dimensional time series data
+- Uses RNNs
+- Allows us to train the same model over several related time series
+- Can find frequencies and seasonality
+- Input format:
+    - JSON lines format: can be GZIP of Parquet
+    - Each record must contain:
+        - Start: Starting timestamp
+        - Target: time series values
+    - Optionally, each record can contain:
+        - Dynamic_feat: dynamic features such as was a promotion applied to a product ina time series, product purchases
+        - Cat: categorical feature
+- How is it used?
+    - We always include entire time series for training, testing and inference
+    - We always use the entire dataset as test set, remove last time points for training. We evaluate on withheld values
+    - We don't want to use large values for prediction length (>400)
+    - Train on many time series and not just one when possible
+- Important hyperparameters:
+    - Context_length
+        - Number of time points the model sees before making a prediction
+        - Can be smaller than seasonalities; the model will lag one year anyhow
+    - Epochs
+    - mini_batch_rate
+    - Learning_rate
+    - Num_cells
+- Instance Types:
+    - We can use CPU or GPU machines
+    - We can have single or multi-machine clusters
+    - Recommendation: start with CPU (ml.c4.2xlarge, ml.c4.4xlarge), move upt to GPU if necessary (large models or large mini-batch sizes >512)
+    - For inference only CPU supported
+    - May need larger instances for tuning
