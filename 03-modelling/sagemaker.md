@@ -215,3 +215,33 @@
     - For cbow and skipgram, recommended a single ml.p3.2xlarge (any single CPU or single GPU instance will work)
     - For batch_skipgram, we can use single or multiple CPU instances
     - For text classification, recommended is a c5 node for less than 2GB of training data. For larger datasets, it is recommended to use a single GPU instance (ml.p2.xlarge, ml.p3.2xlarge)
+
+## Object2Vec
+
+- It creates low-dimensional dense embeddings of high-dimensional objects
+- It is basically Word2vec, generalized to handle things other than just words
+- Can compute nearest neighbors of objects
+- Can be used for genre prediction, recommendations, etc.
+- Input format:
+    - Data must be tokenized into integers
+    - Training data consists of pairs of tokens and/or sequences of tokens, for example:
+        - Sentence-sentence
+        - Labels-sequence (genre description?)
+        - Customer-customer
+        - Product-product
+        - User-item
+- How it is used?
+    - We train it with 2 input channels, two encoders and a comparator
+    - Encoder choices:
+        - Average-pooled embeddings
+        - CNN's
+        - Bidirectional LSTM
+    - Comparator is followed by a feed-forward neural network
+- Important hyperparameters:
+    - Usual deep-learning parameters: dropout, early stopping, epochs, learning rate, batch size, layers, activation function, optimizer, weight decay
+    - Enc1_network, enc2_network: we choose the encoder type: hcnn, bilstm, pooled_embedding
+- Instance Types:
+    - Can only train on a single machine: CPU or GPU instances are supported, multi-GPU is also supported
+    - Recommended instance types:
+        - CPU: ml.m5.2xlarge, ml.p2.xlarge
+        - GPU: P2, P3, G4dn, G5
