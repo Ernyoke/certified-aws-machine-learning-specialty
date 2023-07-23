@@ -175,3 +175,43 @@
     - Recommendation: start with CPU (ml.c4.2xlarge, ml.c4.4xlarge), move upt to GPU if necessary (large models or large mini-batch sizes >512)
     - For inference only CPU supported
     - May need larger instances for tuning
+
+## BlazingText
+
+- Can be used for coupe of different things:
+    - Text classification:
+        - Predict labels for a sentence, if we train the system with existing sentences and with the labels associated with them. It's a supervised learning
+        - Useful in web searches, information retrieval (intended to be used for sentences, not for entire documents)
+    - Word2vec
+        - Creates a vector representation of words
+        - Semantically similar words are represented by vectors close to each other (word embedding)
+        - It is useful for NLP, but is not an NLP algorithm in itself
+        - Can be used for machine translation, sentiment analysis
+- Input format:
+    - For supervised mode (text classification):
+        - One sentence per line
+        - First "word" in the sentence is the string `__label__` followed by the actual label for the sentence
+    - Accepts "augmented manifest text format"
+    - For Word2vec just wants a text file with one training sentence per line
+- How is it used?
+    - Word2vec has multiple modes:
+        - Cbow (Continuous Bag of Words)
+        - Skip-gram
+        - Batch skip-gram
+            - Distributed computation over many CPU nodes
+- Important hyperparameters:
+    - Word2vec:
+        - Mode: batch_skipgram, skipgram, cbow
+        - Learning_rate
+        - Window_size
+        - Vector_dim
+        - Negative_samples
+    - Text classification:
+        - Epochs
+        - Learning_rate
+        - Word_ngrams
+        - Vector_dim
+- Instance Types:
+    - For cbow and skipgram, recommended a single ml.p3.2xlarge (any single CPU or single GPU instance will work)
+    - For batch_skipgram, we can use single or multiple CPU instances
+    - For text classification, recommended is a c5 node for less than 2GB of training data. For larger datasets, it is recommended to use a single GPU instance (ml.p2.xlarge, ml.p3.2xlarge)
