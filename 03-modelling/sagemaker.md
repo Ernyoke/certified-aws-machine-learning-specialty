@@ -271,3 +271,25 @@
 - Instance Types:
     - Use GPU instances for training (multi-GPU and multi-machine is also supported). Recommended instance types: ml.p2.xlarge - ml.p2.16xlarge, ml.p3..., G4dn, G5
     - Use CPU or GPU for inference: M5, P2, P3, G4dn
+
+## Image Classification
+
+- Objectives:
+    - Assign one or more labels to an image
+    - Does not tell where he objects are, just what objects are in the image
+- There are separate versions of algorithms for MXNet and Tensorflow
+- MXNet:
+    - Full training mode: network is initialized with random weights
+    - Transfer learning mode:
+        - Network is initialized with pre-trained weights
+        - The top fully-connected layer is initialized with random weights
+        - Network is fine-tuned with new training data
+    - Default image size is 3-channel 224 * 224 (ImageNet's dataset)
+- Tensorflow: uses various Tensorflow Hub models (MobileNet, Inception, ResNet, EfficientNet)
+    - Top classification layer is available for fine tuning or further training
+- Important Hyperparameters:
+    - Batch size, learning rate, optimizer
+    - Optimizer-specific parameters: weight decay, beta 1, beta 2, eps, gamma
+- Instance Types:
+    - GPU instances for training: P2, P3, G4dn, G5. Multi-machine and multi-GPU is supported
+    - Inference: same CPU or GPU instances are supported
