@@ -245,3 +245,29 @@
     - Recommended instance types:
         - CPU: ml.m5.2xlarge, ml.p2.xlarge
         - GPU: P2, P3, G4dn, G5
+
+## Object Detection
+
+- Objectives:
+    - Identify all the objects in an image with bounding boxes
+    - Detect and classify objects with a single deep neural network
+    - Classes are accompanied by confidence scores
+    - Algorithms can be trained from scratch, or use pre-trained models based on ImageNet
+- There are 2 object detection variants: MXNet and Tensorflow
+- In both cases an image as taken as an input, the output is all instances of objects in the image with categories and confidence scores
+- MXNet:
+    - Uses a CNN with the Single Shot multibox Detector (SSD) algorithm: the base CNN can be VGG-16 or ResNet-50
+    - In has both transfer learning mode and incremental training mode: we can use a pre-trained model for the base network weights instead of random initial weights
+    - Uses flip, rescale and jitter to avoid overfitting
+- Tensorflow:
+    - Uses ResNet, EfficientNet, MobileNet models from Tensorflow Model Garden
+- Input format:
+    - MXNet: RecordIO or image format (jpeg, png)
+    - With image format, we have to supply a JSON file for annotation data for each image
+- Important Hyperparameters:
+    - Mini_batch_size
+    - Learning_rate
+    - Optimizer: sgd, adam, rmsprop, adadelta
+- Instance Types:
+    - Use GPU instances for training (multi-GPU and multi-machine is also supported). Recommended instance types: ml.p2.xlarge - ml.p2.16xlarge, ml.p3..., G4dn, G5
+    - Use CPU or GPU for inference: M5, P2, P3, G4dn
