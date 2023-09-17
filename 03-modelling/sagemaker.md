@@ -293,3 +293,33 @@
 - Instance Types:
     - GPU instances for training: P2, P3, G4dn, G5. Multi-machine and multi-GPU is supported
     - Inference: same CPU or GPU instances are supported
+
+## Semantic Segmentation
+
+- Pixel level object classification
+- Different from image classification, it assigns labels to each segment of an image
+- It is also different from object detection, which assigns labels to bounding boxes
+- Useful for self-driving vehicles, medical imaging diagnostics, robot sensing
+- Produces a *segmentation mask*
+- Input format:
+    - It expects JPG/PNG images with annotations
+    - We can use label maps to describe annotations
+    - Supports augmented manifest image format for Pipe mode
+    - For inference JPG images are accepted
+- Under the hood is built on MXNet Gluon and Gluon CV
+- It gives us a choice of 3 different algorithms:
+    - Fully-Convolutional Network (FCN)
+    - Pyramid Scene Parsing (PSP)
+    - DeepLabV3
+- For the underlying architecture of the neural network we have a few choices:
+    - ResNet50
+    - ResNet101
+    - Both trained on ImageNet database
+- Incremental training or training from scratch are supported
+- Important Hyperparameters:
+    - Epochs, learning rate, batch size
+    - Choice of algorithm
+    - Backbone Neural Network
+- Instance Types:
+    - Semantic segmentation: only GPU instances are supported for training: P2, P3, G4dn, G5. Training is limited to a single machine only
+    - Inference: CPU (C5 or M5) or GPU (P3 or G4dn) are supported
