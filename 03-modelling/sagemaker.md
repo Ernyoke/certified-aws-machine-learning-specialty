@@ -323,3 +323,28 @@
 - Instance Types:
     - Semantic segmentation: only GPU instances are supported for training: P2, P3, G4dn, G5. Training is limited to a single machine only
     - Inference: CPU (C5 or M5) or GPU (P3 or G4dn) are supported
+
+## Random Cut Forest (RFC)
+
+- Used for anomaly detection
+- It works in an unsupervised setting
+- It can detect:
+    - Unexpected spikes in time series data
+    - Breaks in periodicity
+    - Unclassifiable data points
+- It assigns and anomaly score to each data point
+- Based on an algorithm developed by Amazon that they seem to be very proud of!
+- Input format:
+    - RecordIO-protobuf or CSV
+    - Can use File of Pipe mode on either
+    - Optional test channel for computing accuracy, precision, recall and F1 on labeled data (anomaly or not)
+- How does it work under the hood?
+    - Creates a forest of trees where each tree is a partition of the training data; looks at expected change in complexity of the tree as a result of adding a point into it
+    - Data is sampled randomly
+- RFC shows up in Kinesis Analytics as well; it can work on streaming data too
+- Important Hyperparameters:
+    - Num_trees: increasing it reduces the noise
+    - Num_samples_per_tree: should be chosen such that 1/num_samples_per_tree approximates the ratio of anomalous to normal data
+- Instance types:
+    - Does not take advantage of GPUs
+    - Recommended types are M4, C4 or C5 for training and ml.c5.xl for inference
