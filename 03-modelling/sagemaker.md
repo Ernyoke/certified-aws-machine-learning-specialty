@@ -348,3 +348,30 @@
 - Instance types:
     - Does not take advantage of GPUs
     - Recommended types are M4, C4 or C5 for training and ml.c5.xl for inference
+
+## Neural Topic Model
+
+- Usage:
+    - Organizing documents into topics
+    - Classify or summarize documents based on topics
+- It's not just TF/IDF
+- It is unsupervised algorithm, the underlying algorithm is being called "Neural Variational Inference"
+- Input format:
+    - Four data channels:
+        - `train` (required)
+        - `validation`, `test` and `auxiliary`  are optional
+    - Accepts recordIO-protobuf or CSV
+    - Input words must be tokenized into integers: every document must contain a count for every word in the vocabulary
+    - The auxiliary channel is for the vocabulary
+    - It can be used in file or pipe mode
+- How is it use?
+    - We define how many topics we want
+    - These topics are latent representation based on top ranking words
+    - One of two topic modelling algorithm offered by SageMaker
+- Important Hyperparameters:
+    - Lowering mini_batch_size and learning_rate can reduce validation loss at expense of training time
+    - Num_topics
+- Instance types:
+    - GPU or CPU:
+        - GPU recommended for training
+        - CPU can be used for inference
