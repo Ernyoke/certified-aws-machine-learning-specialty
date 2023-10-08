@@ -364,7 +364,7 @@
     - Input words must be tokenized into integers: every document must contain a count for every word in the vocabulary
     - The auxiliary channel is for the vocabulary
     - It can be used in file or pipe mode
-- How is it use?
+- How is it used?
     - We define how many topics we want
     - These topics are latent representation based on top ranking words
     - One of two topic modelling algorithm offered by SageMaker
@@ -375,3 +375,55 @@
     - GPU or CPU:
         - GPU recommended for training
         - CPU can be used for inference
+
+## Latent Dirichlet Allocation (LDA)
+
+- Topic modelling algorithm, it is not based on deep learning based algorithm
+- It is an unsupervised algorithm, the topics themselves are unlabeled, they are just groupings of documents with a shared subset of words
+- Can be used for things other than words:
+    - Cluster customers based on purchases
+    - Harmonic analysis in music
+- Input format:
+    - Takes in a training channel and an optional test channel
+    - Input can be recordIO-protobuf or CSV
+    - Each document has a counts for every word in vocabulary (in CSV format) - integer how often each word occurs in the document
+    - Pipe mode only supported with recordIO
+- How is it used?
+    - Unsupervised; generates as many topics we specify
+    - Optional test channel can be used for scoring results (per word log-likelyhood)
+    - Functionally similar to NTM, but CPU-based => cheaper, more efficient
+- Important Hyperparameters:
+    - Num_topics
+    - Alpha0 - Concentration parameter:
+        - Smaller values generate sparse topic mixtures
+        - Larger values (>1.0) produce uniform mixtures
+- Instance types:
+    - Single-instance CPU for training
+
+## K-Nearest-Neighbors (KNN)
+
+- Simple classification or regression algorithm
+- Used for:
+    - Classification: find the K closest points to a sample of points and return the most frequent label
+    - Regression: find the K closest points to a sample point and return the average value
+- Input format:
+    - Train channel contains our data
+    - Test channel emits accuracy or MSE
+    - recordIO-protobuf or CSV training (first column is the label)
+    - Supports file or pipe mode on either
+- How is it used?
+    - Data is first sampled
+    - SageMaker includes a dimensionality reduction stage:
+        - Avoid sparse data ("curse of dimensionality") at cost of noise/accuracy
+        - "sign" of "fjlt" methods
+    - Build an index for looking up neighbors
+    - Serialize the model
+    - Query the model for a given K
+- Important Hyperparameters:
+    - K: how many neighbors we look at
+    - Sample_size
+- Instance types:
+    - Training can be done on CPU or GPU: MI.m5.2xlarge, MI.p2.xlarge
+    - Inference:
+        - Recommended CPU for lower latency
+        - GPU for higher throughput on large batches
