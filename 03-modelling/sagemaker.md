@@ -427,3 +427,37 @@
     - Inference:
         - Recommended CPU for lower latency
         - GPU for higher throughput on large batches
+
+# K-Means Clustering
+
+- Unsupervised clustering algorithm
+- Data is divided into K groups, where each member of a group are as similar as possible to each other. Similarity is measured by Euclidean distance
+- SageMaker provides Web-scale K-Means clustering
+- Input format:
+    - Channels: train channel, optional test channel
+        - Training flag: ShardedByS3Key
+        - Testing flag: FullyReplicated
+    - Supported formats: recordIO-protobuf or CSV
+    - Supports both file or pipe mode input
+- How it is used?
+    - Every observation is mapped to n-dimensional space (n - number of features)
+    - The job of K-Means is to optimize the center of K clusters. "Extra cluster centers" may be specified to improve accuracy (will end-up reducing the value of `k` - `K = k*x`)
+    - Algorithm:
+        - Determine the initial cluster centers:
+            - Random or k-means++ approach
+            - K-means++ tries to make initial clusters far apart
+        - Iterate over training data and calculate cluster centers
+        - Reduce clusters from `K` to `k` using Lloyd's method
+- Important Hyperparameters:
+    - K: number of clusters
+        - Choosing the right value for K can be tricky
+        - We can use the "elbow method"
+    - Mini_batch_size
+    - Extra_center_factor (`x`)
+    - Init_method
+- Instance types:
+    - CPU or GPU can be used, recommended is CPU
+    - Only one GPU per instance can be used
+    - Recommended instance types: 
+        - ml.g4dn.xlarge for GPU, other g4dn and g4 are supported
+        - p2, p3 for CPU
