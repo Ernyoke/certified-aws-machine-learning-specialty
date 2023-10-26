@@ -461,3 +461,26 @@
     - Recommended instance types: 
         - ml.g4dn.xlarge for GPU, other g4dn and g4 are supported
         - p2, p3 for CPU
+
+## PCA - Principal Component Analysis
+
+- It is a dimensionality reduction technique:
+    - Projects higher=dimensional data (lots of features) into lower-dimensional (like 2D plot) while minimizing loss of information
+    - The reduced dimensions are called components:
+        - First component has largest possible variability
+        - Second component has the next largest possible variability
+        - etc.
+- It is unsupervised
+- Input format:
+    - recordIO-protobuf or CSV
+    - File or pipe format is supported for both
+- How it is used?
+    - Under the hood a covariance matrix is created after which it used an algorithm called singular value decomposition (SVD)
+    - Has 2 different mode of operation:
+        - *Regular*: for sparse data and moderate number of observations and features
+        - *Randomized*: for large number of observations and features, uses and approximation algorithm
+- Important Hyperparameters:
+    - Algorithm_mode
+    - Subtract_mean: has the effect of unbiasing the data
+- Instance types:
+    - We can use both CPU and GPU
