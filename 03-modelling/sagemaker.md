@@ -484,3 +484,25 @@
     - Subtract_mean: has the effect of unbiasing the data
 - Instance types:
     - We can use both CPU and GPU
+
+## Factorization Machines
+
+- Specializes in dealing with sparse data, such as:
+    - Click predictions
+    - Item recommendations
+    - Since an individual user doesn't interact with most pages/products the data is sparse
+- It is supervised learning algorithm, it can do both classification or regression
+- It is limited to pair-wise interactions, example: user-item
+- Input format:
+    - Must be recordIO-protobuf with Float32
+    - CSV is not practical for sparse data
+- How it is used?
+    - Finds factors we can use to predict a classification (click or not, purchase or not) or value (predicted rating) given a matrix representing some pair of things (users & items)
+    - Usually used in the context of recommender systems
+- Important Hyperparameters:
+    - Initialization methods for bias, factors and linear terms
+    - Each one of these can be tuned, they can be uniform, normal or constant
+- Instance types:
+    - Both CPU and GPU instances can be used
+    - CPU instances are recommended
+    - GPU only works with dense data
