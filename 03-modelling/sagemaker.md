@@ -415,7 +415,7 @@
     - Data is first sampled
     - SageMaker includes a dimensionality reduction stage:
         - Avoid sparse data ("curse of dimensionality") at cost of noise/accuracy
-        - "sign" of "fjlt" methods
+        - `sign` of `fjlt` methods
     - Build an index for looking up neighbors
     - Serialize the model
     - Query the model for a given K
@@ -536,3 +536,36 @@
     - GPU instances are recommended: MI.p3.2xlarge or higher
     - We can use multiple GPUs for training
     - Size of CPU instances depends on vector_dim and num_entity_vectors
+
+## Reinforcement Learning
+
+### Q-Learning
+
+- A specific implementation of reinforcement learning
+- With Q-Learning we have:
+    - A set of environmental states `s`
+    - A set of possible actions in those state `a`
+    - A value of each state/action `Q`
+- We start of with `Q` values of 0
+- Explore the space
+- As bad things happen after a given state/action, reduce its `Q`
+- As rewards happen after a given state/action, increase its `Q`
+
+### Exploration Problem
+
+- How do we efficiently explore all of the possible states?
+    - Simple approach: always choose the action for a given state with the highest `Q`. If there is a tie, choose a random.
+        - This approach is really inefficient and we might miss a lot of paths
+    - Better way: introduce an epsilon term (Markov Decision Process - MDP)
+        - If a random number is less than epsilon, we don't follow the highest `Q`, but choose at random
+        - That way, exploration never totally stops
+        - Choose epsilon can be tricky
+
+### Reinforcement Learning in SageMaker
+
+- Uses a deep learning framework with Tensorflow or MXNet
+- Supports Intel Coach and Ray Rllib toolkits
+- Custom, open-source or commercial environments supported:
+    - MATLAB, Simulink
+    - EnergyPlus, RoboSchool, PyBullet
+    - Amazon Sumerian, AWS RoboMaker
