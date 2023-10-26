@@ -506,3 +506,33 @@
     - Both CPU and GPU instances can be used
     - CPU instances are recommended
     - GPU only works with dense data
+
+## IP Insights
+
+- Used for finding fishy behavior in weblogs
+- It is an unsupervised learning technique for finding IP address usage patterns
+- Identifies suspicious behavior from IP addresses:
+    - Identity logins from anomalous IP's
+    - Identify accounts creating resources from anomalous IP's
+- Training data:
+    - It can take in user names, account ID's directly; we don't need to pre-process data
+    - Training channel is optional, can be used to compute the value for the AUC (area under the curve) score
+    - Input has to be CSV data: Entity/IP 
+- How it is used?
+    - Uses a neural network to learn latent vector representations of entities and IP addresses
+    - Entities are hashed and embedded; this requires a sufficiently large hash size
+    - Automatically generates negates samples during training by randomly pairing entities and IP's
+- Important Hyperparameters:
+    - Num_entity_vectors:
+        - Hash size
+        - Recommended to be set to twice the number of unique entity identifiers
+    - Vector_dim
+        - Size of embedding vectors
+        - Scales model size
+        - Too large value can result in overfitting
+    - Epochs, learning rate, batch size, etc.
+- Instance types:
+    - CPU or GPU
+    - GPU instances are recommended: MI.p3.2xlarge or higher
+    - We can use multiple GPUs for training
+    - Size of CPU instances depends on vector_dim and num_entity_vectors
