@@ -582,3 +582,39 @@
     - We should use logarithmic scale when appropriate
     - We should not run too many training jobs concurrently
     - We should make sure training jobs running on multiple instances report the correct objective metric in the end
+
+## Apache Spark with SageMaker
+
+- Pre-process data as normal with Spark
+- Use sagemaker-spark library 
+- `SageMakerEstimator` - use this instead of Spark AI library. It exposes algorithms such as: KMeans, PCA, XGBoost
+- `SageMakerModel` - make inferences
+
+## SageMaker Debugger
+
+- Saves internal model state at periodical intervals
+    - Gradients/tensors over time as a model is trained
+    - We can define rules for detecting unwanted conditions while training
+    - A debug job is run for each rule we configure
+    - Logs and fires a CloudWatch event when the rule is hit
+- Integrates with SageMaker Studio using SageMaker Studio Debugger dashboards
+- It can automatically generate training reports
+- It has several built-in rules:
+    - Monitor system bottlenecks
+    - Profile model framework operations
+    - Debug model parameters
+- Supported Frameworks and Algorithms:
+    - Tensorflow
+    - PyTorch
+    - MXNet
+    - XGBoost
+    - SageMaker generic estimator (for use with custom training containers)
+- Debugger API is available in GitHub - SMDebug
+- Newer features:
+    - SageMaker Debugger Insights Dashboard
+    - Debugger ProfileRule:
+        - ProfilerReport
+        - Hardware system metrics (CPUBottleneck, GPUMemoryIncrease, etc.)
+        - Framework Metrics (MaxInitializationTime, OverallFrameworkMetrics, etc.)
+    - Built-in actions to receive notifications or stop straining
+    - Profiling system resource usage and training
