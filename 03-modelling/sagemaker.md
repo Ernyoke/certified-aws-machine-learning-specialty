@@ -569,3 +569,16 @@
     - MATLAB, Simulink
     - EnergyPlus, RoboSchool, PyBullet
     - Amazon Sumerian, AWS RoboMaker
+
+## Automatic Model Tuning
+
+- We define the hyperparameters we care about, the ranges we want to try and the metrics we are optimizing for
+- SameMaker spins up a "Hyperparameter Tuning Job" that trains as many combinations as we allow
+- The set of hyperparameters producing the best results can then be deployed as a model
+- It learns as it goes, so it does not have to try every possible combination
+- Best practices:
+    - We should not optimize too many parameters at once
+    - We should limit ranges to as small as possible
+    - We should use logarithmic scale when appropriate
+    - We should not run too many training jobs concurrently
+    - We should make sure training jobs running on multiple instances report the correct objective metric in the end
