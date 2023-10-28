@@ -690,3 +690,18 @@
 - Shadow Tests:
     - Allows us to compare performance of shadow variant to production
     - We can monitor models in SageMaker console and decide when to promote them
+
+## SageMaker Canvas
+
+- It is a no-code machine learning for business analysts
+- What we have to do is to upload csv data (csv only for now), select a column to predict, build it and make predictions
+- We can join datasets
+- It can do classification or regression
+- Provides automatic data cleaning
+- We can share models and datasets with SageMaker Studio
+- It can integrate with Okta SSO
+- Canvas lives within a SageMaker Domain that must be manually updated
+- We can import data from Redshift as well
+- Time series forecasting must be enabled by an IAM role
+- Can run in a VPC
+- Pricing: $1.9 plus a charge based on a number of training cells a model
