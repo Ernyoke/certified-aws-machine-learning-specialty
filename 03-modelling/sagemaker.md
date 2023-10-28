@@ -618,3 +618,75 @@
         - Framework Metrics (MaxInitializationTime, OverallFrameworkMetrics, etc.)
     - Built-in actions to receive notifications or stop straining
     - Profiling system resource usage and training
+
+## SageMaker Autopilot
+
+- It is a wrapper around AutoML
+- Automates:
+    - Algorithm selection
+    - Data preprocessing
+    - Model tuning
+    - All infrastructure
+- It does all the trial and error for us
+- Workflow:
+    - Load data from S3 for training
+    - Select the target column for prediction
+    - Automatic model creation
+    - Model notebook is available for visibility and control
+    - Model leaderboards: ranked list of recommended models from which we can pick one
+    - Deploy and monitor the model, refine via notebook if needed
+- We can add human guidance
+- We can use it with or without code in SageMaker Studio or AWS SDKs
+- We can use Autopilot on the following problem types:
+    - Binary classification
+    - Multiclass classification
+    - Regression
+- When running it on hyperparameter optimization, we can chose from the following algorithm types:
+    - Linear Learner
+    - XGBoost
+    - Deep Learning (MLP's)
+    - Ensemble mode
+- Input data must be tabular CSV or Parquet
+- Autopilot Explainability:
+    - Integrates with SageMaker Clarify
+    - Gives more transparency on how models arrive at predictions
+    - Feature attribution:
+        - Uses SHAP Baselines/Shapley values
+        - Research from cooperative game theory
+        - Assigns each feature an importance value for a given prediction
+
+## SageNaker Model Monitor
+
+- Get alerts via CloudWatch on quality deviations on our deployed models
+- Visualizes data drift, for example: loan model starts giving people more credit due to drifting or missing input features
+- Detects anomalies and outliers
+- Detects new features
+- Requires no coding
+- Integrates with SageMaker Clarify:
+    - Clarify detects potential bias
+    - With Model Monitor we can monitor for bias and be alerted to new potential bias via CloudWatch
+    - Clarify also helps explain model behavior
+- Data is stored in S3 and secured
+- Monitoring jobs should be scheduled via Monitor Schedule
+- Metrics are emitted to CloudWatch
+- Integrates with Tensorboard, QuickSight, Tableau or we can just visualize data within SageMaker Studio
+- Monitor types:
+    - Drift in data quality:
+        - Relative to a baseline we create
+        - "Quality" is just statistical properties and features
+    - Drift in model quality (accuracy):
+        - Can integrate with Ground Truth labels
+    - Bias drift
+    - Feature attribution drift
+        - Based on Normalized Discounted Cumulative Gain (NDCG) score
+        - This compares feature ranking of training vs. live data
+
+## Deployment Safeguards
+
+- Deployment Guardrails:
+    - Can be deployed to asynchronous or real-time inference endpoints
+    - We can control the shifting traffic to new models (Blue/Green deployments)
+    - Provides auto-rollbacks
+- Shadow Tests:
+    - Allows us to compare performance of shadow variant to production
+    - We can monitor models in SageMaker console and decide when to promote them
