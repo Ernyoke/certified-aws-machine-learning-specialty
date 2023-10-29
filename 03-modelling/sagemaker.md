@@ -705,3 +705,44 @@
 - Time series forecasting must be enabled by an IAM role
 - Can run in a VPC
 - Pricing: $1.9 plus a charge based on a number of training cells a model
+
+## Pre-training Bias Metrics in Clarify
+
+- Class Imbalance (CI):
+    - One facet (demographic group) has fewer training values than another
+- Difference in Proportions of Labels (DPL):
+    - Imbalance of positive outcomes between facet values
+- Kullback-Leibler Divergence (KL), Jensen-Shannon Divergence (JS):
+    - How much outcome distributions of facets diverge
+- Lp-norm (LP):
+    - P-norm difference between distributions of outcomes from facets
+- Total Variation Distance (TVD):
+    - L1-norm difference between distributions of outcomes from facets
+- Kolmogorov-Smirnov (KS):
+    - Maximum divergence between outcomes in distributions from facets
+- Conditional Demographic Disparity (CDD):
+    - Display of outcomes between facets as a whole, and by subgroups
+
+## SageMaker Training Compiler
+
+- Integrated into AWS Deep Learning Containers (DLCs)
+- Its job is to compile and optimize training jobs on GPU instances
+- Can accelerate training up to 50%
+- Converts models into hardware-optimized instructions
+- It is incompatible with SageMaker distributed training libraries
+- Best practices for using SageMaker Training Compiler:
+    - Ensure GPU instances are used (ml.p3, ml.p4)
+    - PyTorch models must use PyTorch/XLA's model save function
+    - Enable debug flag in compiler_config parameter to enable debugging
+
+## SageMaker Feature Store
+
+- A "feature" is just a property used to train a machine learning model
+- Machine learning models require fast, secure access to feature data for training
+- It is also a challenge to keep it organized and share features between different models
+- Features are stored in a Feature Store and they are organized into Feature Groups
+- Security:
+    - Data is encrypted at rest and in transit
+    - Works with KMS customer master keys
+    - Supports fine-grained access control with IAM
+    - Can be also secured with AWS PrivateLink
