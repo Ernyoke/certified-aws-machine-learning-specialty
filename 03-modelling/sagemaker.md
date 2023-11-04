@@ -746,3 +746,43 @@
     - Works with KMS customer master keys
     - Supports fine-grained access control with IAM
     - Can be also secured with AWS PrivateLink
+
+## SageMaker ML Lineage Tracking
+
+- Creates and stores information about the steps of a machine learning (ML) workflow from data preparation to model deployment
+- Essentially creates and stores ML workflows (MLOps)
+- It keeps a running history of our models
+- Offers tracking for auditing and compliance
+- Offers automatically or manually-created tracking entities
+- Integrates with AWS RAM for cross-account lineage tracking
+- Lineage Tracking Entities:
+    - Trial component (processing jobs, training jobs, transform jobs)
+    - Trial (a model composed of trial components)
+    - Experiment (group of Trials for a given use case)
+    - Context (logical grouping of entities)
+    - Action (workflow step, model deployment)
+    - Artifact (Object or data, such as an S3 bucket or an image in ECR)
+    - Association (connects entities together) - has optional AssociationType:
+        - ContributedTo
+        - AssociatedWith
+        - DerivedFrom
+        - Produced
+        - SameAs
+- Query Lineage Entities:
+    - We can use LineageQuery API from Python to query entities
+    - Example: find all the models/endpoints/etc. that use a given artifact
+    - We can produce a visualization (requires external Visualize helper class)
+
+## SageMaker Data Wrangler
+
+- Visual interface (in SageMaker Studio) to prepare data for machine learning
+- Allows us to:
+    - Import data
+    - Visualize data
+    - Transform data (300+ transformations to chose from, or use custom code)
+    - "Quick Model" - train our model with our data and measure results
+- Data Wrangler Troubleshooting:
+    - Make sure our Studio user has appropriate IAM roles
+    - Make sure permissions on our data sources allow Data Wrangler access (add AmazonSageMakerFullAccess policy)
+    - EC2 instance limit:
+        - If we get "The following instance type is not available..." errors we may need to request a quota increase: Service Quotas -> Amazon SageMaker -> Studio KernelGateway Apps
