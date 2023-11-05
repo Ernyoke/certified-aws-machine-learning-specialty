@@ -22,3 +22,7 @@
 3. Modelling:
     - [Deep Learning](03-modelling/deep-learning.md)
     - [Amazon SageMaker](03-modelling/sagemaker.md)
+4. Higher Level AI/ML Services
+    - [Amazon Comprehend](04-higher-level-ai-ml-services/amazon-comprehend.md)
+    - [Amazon Translate](04-higher-level-ai-ml-services/amazon-translate.md)
+    - [Amazon Transcribe](04-higher-level-ai-ml-services/amazon-transcribe.md)
