@@ -29,3 +29,5 @@
     - [Amazon Polly](04-higher-level-ai-ml-services/amazon-polly.md)
     - [Amazon Rekognition](04-higher-level-ai-ml-services/amazon-rekognition.md)
     - [Amazon Forecast](04-higher-level-ai-ml-services/amazon-forecast.md)
+    - [Amazon Lex](04-higher-level-ai-ml-services/amazon-lex.md)
+    - [Amazon Personalize](04-higher-level-ai-ml-services/amazon-personalize.md)
