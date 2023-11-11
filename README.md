@@ -27,3 +27,5 @@
     - [Amazon Translate](04-higher-level-ai-ml-services/amazon-translate.md)
     - [Amazon Transcribe](04-higher-level-ai-ml-services/amazon-transcribe.md)
     - [Amazon Polly](04-higher-level-ai-ml-services/amazon-polly.md)
+    - [Amazon Rekognition](04-higher-level-ai-ml-services/amazon-rekognition.md)
+    - [Amazon Forecast](04-higher-level-ai-ml-services/amazon-forecast.md)
