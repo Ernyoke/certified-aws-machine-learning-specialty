@@ -154,7 +154,7 @@
         - Start: Starting timestamp
         - Target: time series values
     - Optionally, each record can contain:
-        - Dynamic_feat: dynamic features such as was a promotion applied to a product ina time series, product purchases
+        - Dynamic_feat: dynamic features such as was a promotion applied to a product in a time series, product purchases
         - Cat: categorical feature
 - How is it used?
     - We always include entire time series for training, testing and inference
