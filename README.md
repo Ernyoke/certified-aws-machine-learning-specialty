@@ -31,3 +31,4 @@
     - [Amazon Forecast](04-higher-level-ai-ml-services/amazon-forecast.md)
     - [Amazon Lex](04-higher-level-ai-ml-services/amazon-lex.md)
     - [Amazon Personalize](04-higher-level-ai-ml-services/amazon-personalize.md)
+    - [Other ML Services](04-higher-level-ai-ml-services/other-ml-services.md)
