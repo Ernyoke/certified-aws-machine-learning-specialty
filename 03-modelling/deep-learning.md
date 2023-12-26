@@ -262,6 +262,7 @@
         - Equal to probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative instance
         - ROC AUC of 0.5 is useless classifier, 1.0 is perfect
         - Commonly used metric for comparing classifiers
+- Example of usage of Confusion Matrix with measuring models: https://aws.amazon.com/blogs/machine-learning/predicting-customer-churn-with-amazon-machine-learning/
 
 ## Ensemble Learning
 

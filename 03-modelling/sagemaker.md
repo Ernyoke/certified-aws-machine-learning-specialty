@@ -378,7 +378,7 @@
 
 ## Latent Dirichlet Allocation (LDA)
 
-- Topic modelling algorithm, it is not based on deep learning based algorithm
+- Topic modelling algorithm, it is not based on deep learning algorithm
 - It is an unsupervised algorithm, the topics themselves are unlabeled, they are just groupings of documents with a shared subset of words
 - Can be used for things other than words:
     - Cluster customers based on purchases
@@ -428,7 +428,7 @@
         - Recommended CPU for lower latency
         - GPU for higher throughput on large batches
 
-# K-Means Clustering
+## K-Means Clustering
 
 - Unsupervised clustering algorithm
 - Data is divided into K groups, where each member of a group are as similar as possible to each other. Similarity is measured by Euclidean distance
@@ -786,3 +786,14 @@
     - Make sure permissions on our data sources allow Data Wrangler access (add AmazonSageMakerFullAccess policy)
     - EC2 instance limit:
         - If we get "The following instance type is not available..." errors we may need to request a quota increase: Service Quotas -> Amazon SageMaker -> Studio KernelGateway Apps
+
+## SageMaker Serverless Inference
+
+- Amazon SageMaker Serverless Inference enables us to deploy and scale ML models without configuring or managing any of the underlying infrastructure
+- On-demand Serverless Inference is ideal for workloads which have idle periods between traffic spurts and can tolerate cold starts
+- Serverless endpoints automatically launch compute resources and scale them in and out depending on traffic, eliminating the need to choose instance types or manage scaling policies
+
+## SageMaker Ground Truth
+
+- Offers the most comprehensive set of human-in-the-loop capabilities, allowing us to harness the power of human feedback across the ML lifecycle to improve the accuracy and relevancy of models
+- We can complete a variety of human-in-the-loop tasks with SageMaker Ground Truth, such as data generation and annotation to model review, customization, and evaluation, either through a self-service or an AWS-managed offering
