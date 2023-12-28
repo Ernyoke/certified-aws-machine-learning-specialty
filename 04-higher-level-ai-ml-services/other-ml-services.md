@@ -82,7 +82,7 @@
 ## Amazon Kendra
 
 - It is an enterprise search with natural language
-- Usa cases:
+- Use cases:
     - Build an internal search tool for questions and help
     - Combine data from file systems, SharePoint, intranet, sharing services (JDBC, S3) into one searchable repository
 - ML powered - uses thumbs up/down feedback

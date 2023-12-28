@@ -22,6 +22,7 @@
 3. Modelling:
     - [Deep Learning](03-modelling/deep-learning.md)
     - [Amazon SageMaker](03-modelling/sagemaker.md)
+    - [Other Random Stuff](03-modelling/other.md)
 4. Higher Level AI/ML Services
     - [Amazon Comprehend](04-higher-level-ai-ml-services/amazon-comprehend.md)
     - [Amazon Translate](04-higher-level-ai-ml-services/amazon-translate.md)
@@ -32,3 +33,6 @@
     - [Amazon Lex](04-higher-level-ai-ml-services/amazon-lex.md)
     - [Amazon Personalize](04-higher-level-ai-ml-services/amazon-personalize.md)
     - [Other ML Services](04-higher-level-ai-ml-services/other-ml-services.md)
+5. ML Implementation and Operations
+    - [SageMaker's Inner Details and Production Variants](05-operations/sagemaker-inner-details.md)
+    - [SageMaker on the Edge](05-operations/sagemaker-on-the-edge.md)
