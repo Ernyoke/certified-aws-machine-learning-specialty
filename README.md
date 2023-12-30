@@ -36,3 +36,4 @@
 5. ML Implementation and Operations
     - [SageMaker's Inner Details and Production Variants](05-operations/sagemaker-inner-details.md)
     - [SageMaker on the Edge](05-operations/sagemaker-on-the-edge.md)
+    - [SageMaker Security](05-operations/sagemaker-security.md)
