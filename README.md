@@ -37,3 +37,6 @@
     - [SageMaker's Inner Details and Production Variants](05-operations/sagemaker-inner-details.md)
     - [SageMaker on the Edge](05-operations/sagemaker-on-the-edge.md)
     - [SageMaker Security](05-operations/sagemaker-security.md)
+    - [Managing SageMaker Resources](05-operations/sagemaker-resources.md)
+    - [Serverless Inference](05-operations/serverless-inference.md)
+    - [MLOps with SageMaker and Kubernetes](05-operations/mlops-with-sagemaker-and-k8s.md)
