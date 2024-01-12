@@ -783,7 +783,7 @@
     - "Quick Model" - train our model with our data and measure results
 - Data Wrangler Troubleshooting:
     - Make sure our Studio user has appropriate IAM roles
-    - Make sure permissions on our data sources allow Data Wrangler access (add AmazonSageMakerFullAccess policy)
+    - Make sure permissions on our data sources allow Data Wrangler access (add `AmazonSageMakerFullAccess` policy)
     - EC2 instance limit:
         - If we get "The following instance type is not available..." errors we may need to request a quota increase: Service Quotas -> Amazon SageMaker -> Studio KernelGateway Apps
 

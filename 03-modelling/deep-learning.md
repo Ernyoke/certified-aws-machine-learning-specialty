@@ -44,7 +44,7 @@
         - ReLU, but the slope is the negative part is learned via backpropagation
         - Complicated and computationally intensive
     - Other ReLU variants:
-        - Exponential Linear Unit  (ELU)
+        - Exponential Linear Unit (ELU)
         - Swish
             - From Google, performs really well
             - Performs well mostly with very deep networks (40+ layers)
@@ -64,6 +64,10 @@
         - If we need to do better, we should try Leaky ReLU
         - Last resort: PReLU, Maxout
         - Swish for really deep networks
+    - Softmax vs sigmoid:
+        - Softmax function works for multiclass classification problems and the Sigmoid function is a better option for binary-class problems
+        - Softmax activation is used in the output layer when we want to predict only one class among other classes, so it makes a probability distribution among the outputs so that we can choose the highest probable output
+        - On the other hand, sigmoid is used when we want to predict all classes present. The sigmoid outputs a probability for each class independent of one another
 
 ## Convolutional Neural Networks (CNN)
 
@@ -232,6 +236,9 @@
 | Predicted NO  | FALSE NEGATIVES | TRUE NEGATIVES  |
 
 - Measuring models:
+    - Accuracy: **(TRUE POSITIVES + TRUE NEGATIVES) / (TRUE POSITIVES + FALSE POSITIVES + TRUE NEGATIVES + FALSE NEGATIVES)**
+        - Measures the fraction of correct predictions; the range is 0 to 1
+        - A larger value indicates better predictive accuracy
     - Recall: **TRUE POSITIVES / TRUE POSITIVES + FALSE NEGATIVES**
         - AKA Sensitivity, True Positive rate, Completeness
         - It is the percent of positive rightly predicted

@@ -32,3 +32,10 @@
 - ETS:
     - Exponential Smoothing
     - Commonly used for simple datasets (<100 time series)
+
+## Forecast Quantiles
+
+- Amazon Forecast generates probabilistic forecasts at three default quantiles: 10% (p10), 50% (p50), and 90% (p90)
+- For the p10 forecast, the true value is expected to be lower than the predicted value 10% of the time. If the cost of invested capital is high (for example, being overstocked with a product), the p10 quantile forecast is useful to order relatively fewer items
+- p90 forecast, the true value is expected to be lower than the predicted value 90% of the time
+- We can override the default quantiles if we need to meet a specific requirement
