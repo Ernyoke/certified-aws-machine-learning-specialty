@@ -655,7 +655,7 @@
         - Research from cooperative game theory
         - Assigns each feature an importance value for a given prediction
 
-## SageNaker Model Monitor
+## SageMaker Model Monitor
 
 - Get alerts via CloudWatch on quality deviations on our deployed models
 - Visualizes data drift, for example: loan model starts giving people more credit due to drifting or missing input features

@@ -239,16 +239,16 @@
     - Accuracy: **(TRUE POSITIVES + TRUE NEGATIVES) / (TRUE POSITIVES + FALSE POSITIVES + TRUE NEGATIVES + FALSE NEGATIVES)**
         - Measures the fraction of correct predictions; the range is 0 to 1
         - A larger value indicates better predictive accuracy
-    - Recall: **TRUE POSITIVES / TRUE POSITIVES + FALSE NEGATIVES**
+    - Recall: **TRUE POSITIVES / (TRUE POSITIVES + FALSE NEGATIVES)**
         - AKA Sensitivity, True Positive rate, Completeness
         - It is the percent of positive rightly predicted
         - It is a good choice when we care about the false negatives, ex. fraud detection
-    - Precision: **TRUE POSITIVES / TRUE POSITIVES + FALSE POSITIVES**
+    - Precision: **TRUE POSITIVES / (TRUE POSITIVES + FALSE POSITIVES)**
         - AKA Correct Positives
         - It is the percent of relevant results
         - It is a good choice when we care about false positives, ex. medical screening, drug testing
     - Other metrics:
-        - Specificity: **TRUE NEGATIVES / TRUE NEGATIVES + FALSE POSITIVES** (True negative rate)
+        - Specificity: **TRUE NEGATIVES / (TRUE NEGATIVES + FALSE POSITIVES)** (True negative rate)
         - F1 score: 
             - **2 * TRUE POSITIVES / 2 * TRUE POSITIVES + FALSE POSITIVES + FALSE NEGATIVES**
             - **2 * (Precision * Recall) / (Precision + Recall)**
@@ -259,6 +259,7 @@
             - It only cares about right and wrong answers
 - ROC Curve - Receiver Operating Characteristic Curve
     - It is a plot of true positive rate (recall) vs. false positive rate at various threshold settings
+    - False Negative Rate: **1 - Specificity = FALSE POSITIVES / (FALSE POSITIVES + TRUE NEGATIVES)**
 
     ![ROC Curve](images/roc-curve.png)
 
