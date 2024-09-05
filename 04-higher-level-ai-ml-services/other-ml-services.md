@@ -4,7 +4,7 @@
 
 - OCR with support for  forms, fields and tables
 
-## AWS DeepRaces
+## AWS DeepRacer
 
 - Reinforcement learning powered 1/18-scaled race car
 - It is an educational tool for reinforcement learning
